@@ -1,0 +1,31 @@
+FASTQC 
+fastqc <name of the fastq file>
+
+MaSuRCA
+masurca -i <fastq_files> -t number_of_cores
+
+Jellyfish
+jellyfish histo -t number_of_cores reads.jf > reads.histo
+
+CD-HIT
+cd-hit -i <input_file> -o <output_file> -c 0.99
+
+BUSCO
+busco -i <input_file> -o <output_folder_name> -m genome -l viridiplantae_odb10 -c number_of_cores
+
+RepeatModeler
+BuildDatabase -name name_of_database <input_file>
+RepeatModeler -database name_of_database -pa number_of_cores -LTRStruct
+
+RepeatMasker
+RepeatMasker -pa number_of_cores -lib custom_repeat_library <input_file>
+
+BRAKER2
+braker.pl --gff3 --threads number_of_cores --genome=genome_file --species=new_species_name --prot_seq=protein_seq_file
+
+Augustus
+augustus --species=species_name --progress=true --protein=on --codingseq=on --outfile=output_file <input_file>
+
+HMMER3
+hmmbuild <hmmfile_out> <msafile>
+hmmsearch -o output_file <hmmfile> <seqdb>
